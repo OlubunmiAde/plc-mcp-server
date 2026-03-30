@@ -1,0 +1,65 @@
+# PLC MCP Server Configuration
+
+# PLC Connection Settings
+plc:
+  # Connection type: allen_bradley, siemens, modbus
+  driver: allen_bradley
+  
+  # PLC IP address
+  host: "192.168.1.10"
+  
+  # Slot number (Allen-Bradley)
+  slot: 0
+  
+  # Connection timeout (seconds)
+  timeout: 5
+  
+  # Auto-reconnect on connection loss
+  auto_reconnect: true
+  reconnect_interval: 10
+
+# Safety Settings
+safety:
+  # Allow write operations (false = read-only mode)
+  allow_writes: false
+  
+  # Require confirmation for writes (MCP confirmation flow)
+  require_confirmation: true
+  
+  # Tags allowed for write operations (whitelist)
+  # Only these tags can be written to, even when allow_writes is true
+  writable_tags:
+    - "Tank_Setpoint"
+    - "Conveyor_Speed"
+    - "Batch_Number"
+  
+  # Tags that are NEVER writable (blacklist, overrides whitelist)
+  protected_tags:
+    - "Emergency_Stop"
+    - "Safety_*"  # Wildcard pattern
+  
+  # Enable audit logging
+  audit_enabled: true
+  audit_file: "audit.log"
+
+# Server Settings
+server:
+  # Server name (shown to MCP clients)
+  name: "PLC Control Server"
+  
+  # Server version
+  version: "1.0.0"
+  
+  # Transport: stdio (default for MCP) or sse (HTTP)
+  transport: stdio
+  
+  # HTTP port (only used when transport is sse)
+  port: 8080
+
+# Demo Mode (uses simulated tags instead of real PLC)
+demo_mode: true
+
+# Logging
+logging:
+  level: INFO  # DEBUG, INFO, WARNING, ERROR
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"

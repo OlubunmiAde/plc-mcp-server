@@ -1,0 +1,68 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "plc-mcp-server"
+version = "1.0.0"
+description = "Model Context Protocol server for industrial PLC integration"
+readme = "README.md"
+license = "MIT"
+authors = [
+    { name = "Olu", email = "olubunmiadejugbe@gmail.com" }
+]
+keywords = ["mcp", "plc", "allen-bradley", "industrial", "automation", "ai"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Manufacturing",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Interface Engine/Protocol Translator",
+    "Topic :: System :: Hardware :: Hardware Drivers",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=1.0.0",
+    "pycomm3>=1.2.0",
+    "pyyaml>=6.0",
+    "pydantic>=2.0",
+]
+
+[project.optional-dependencies]
+siemens = ["python-snap7>=1.3"]
+modbus = ["pymodbus>=3.5.0"]
+all = ["python-snap7>=1.3", "pymodbus>=3.5.0"]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+    "black",
+    "ruff",
+]
+
+[project.urls]
+Homepage = "https://github.com/olu/plc-mcp-server"
+Documentation = "https://github.com/olu/plc-mcp-server#readme"
+Repository = "https://github.com/olu/plc-mcp-server"
+
+[project.scripts]
+plc-mcp-server = "plc_mcp_server.__main__:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["plc_mcp_server"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
