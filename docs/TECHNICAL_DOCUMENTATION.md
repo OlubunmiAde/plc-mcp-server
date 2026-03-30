@@ -26,7 +26,30 @@ This document assumes the reader has:
 ### Hardware Requirements (for production use)
 - **Allen-Bradley ControlLogix or CompactLogix PLC** — With Ethernet/IP connectivity
 - **Network access to PLC** — PC must be able to reach PLC IP address
-- **Windows 10/11 or Linux** — macOS untested but should work
+
+### System Requirements
+
+| Component | Minimum | Recommended |
+|-----------|---------|-------------|
+| **Operating System** | Windows 10, Ubuntu 20.04, macOS 12 | Windows 11, Ubuntu 22.04+ |
+| **CPU** | Dual-core 2.0 GHz | Quad-core 3.0 GHz+ |
+| **RAM** | 4 GB | 8 GB+ |
+| **Disk Space** | 500 MB | 1 GB+ |
+| **Network** | 100 Mbps Ethernet | 1 Gbps Ethernet |
+| **Python** | 3.10 | 3.11 or 3.12 |
+
+**Note:** These are requirements for running the MCP server only. Claude Desktop has its own requirements (~2GB RAM additional).
+
+### Network Requirements
+
+| Port | Protocol | Direction | Purpose |
+|------|----------|-----------|---------|
+| 44818 | TCP | Outbound | EtherNet/IP (Allen-Bradley PLC) |
+| 102 | TCP | Outbound | S7 Protocol (Siemens PLC, future) |
+| 502 | TCP | Outbound | Modbus TCP (future) |
+| 8080 | TCP | Inbound | SSE transport (optional, when enabled) |
+
+**Firewall:** Ensure outbound access to PLC IP addresses on port 44818.
 
 ### Optional (for development)
 - **No physical PLC required** — Demo mode simulates PLC tags for testing
