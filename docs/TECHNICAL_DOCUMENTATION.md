@@ -7,6 +7,37 @@
 
 ---
 
+## Prerequisites & Assumptions
+
+This document assumes the reader has:
+
+### Knowledge Requirements
+- **Basic Python programming** — Ability to read/write Python code, use pip, virtual environments
+- **Understanding of PLCs** — Familiarity with PLC concepts (tags, I/O, ladder logic)
+- **Industrial networking basics** — IP addressing, Ethernet/IP, TCP/IP fundamentals
+- **Command line proficiency** — Comfortable with PowerShell (Windows) or Bash (Linux)
+
+### Software Requirements
+- **Python 3.10 or higher** — [Download](https://python.org/downloads/)
+- **Git** — [Download](https://git-scm.com/downloads)
+- **Claude Desktop** — [Download](https://claude.ai/download) (for AI integration)
+- **Text editor or IDE** — VS Code recommended
+
+### Hardware Requirements (for production use)
+- **Allen-Bradley ControlLogix or CompactLogix PLC** — With Ethernet/IP connectivity
+- **Network access to PLC** — PC must be able to reach PLC IP address
+- **Windows 10/11 or Linux** — macOS untested but should work
+
+### Optional (for development)
+- **No physical PLC required** — Demo mode simulates PLC tags for testing
+- **RTX GPU** — Not required; beneficial if running local AI models
+
+### Account Requirements
+- **GitHub account** — For cloning repository and future contributions
+- **Anthropic account** — For Claude Desktop (free tier available)
+
+---
+
 ## Executive Summary
 
 This document describes the design and implementation of a Model Context Protocol (MCP) server for industrial PLC integration. The server enables AI assistants (Claude, Cursor, etc.) to communicate with Allen-Bradley ControlLogix PLCs using natural language.
